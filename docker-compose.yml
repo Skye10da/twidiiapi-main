@@ -1,0 +1,24 @@
+services:
+
+  laravel-docker:
+    container_name: twidii
+    build: .
+    volumes:
+      - ./twidii:/var/www/html
+    ports:
+      - 9000:80
+   
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: twidii
+    ports:
+    - 3306:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:8.1.4
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
